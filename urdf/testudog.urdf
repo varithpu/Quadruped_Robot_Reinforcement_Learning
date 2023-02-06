@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="testudog">
+
+  <link
+    name="body">
+    <inertial>
+      <origin
+        xyz="1.42943000295131E-16 0.075 6.16172361861332E-16"
+        rpy="0 0 0" />
+      <mass
+        value="1.88743965415332" />
+      <inertia
+        ixx="0.0029548438988848"
+        ixy="2.41842017248514E-19"
+        ixz="1.27557383596386E-19"
+        iyy="0.00762427073111878"
+        iyz="-4.79937337776149E-18"
+        izz="0.00806444078194354" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="front_left_hip">
+    <inertial>
+      <origin
+        xyz="1.27567227614644E-15 -0.0245061982189777 0.0434825257550813"
+        rpy="0 0 0" />
+      <mass
+        value="0.287403399090452" />
+      <inertia
+        ixx="0.000294967221100898"
+        ixy="8.18551464402874E-19"
+        ixz="-8.10610530522365E-19"
+        iyy="0.000276989174514326"
+        iyz="6.85291573611587E-05"
+        izz="0.000227908693925579" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_left_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_left_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_rolling_joint"
+    type="revolute">
+    <origin
+      xyz="0.0750000000000002 -0.0459999999999999 0"
+      rpy="1.57079632679488 1.57079632679488 0" />
+    <parent
+      link="body" />
+    <child
+      link="front_left_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-0.78539816339" upper="0.78539816339" />
+  </joint>
+
+  <transmission name="front_left_rolling_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_rolling_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_rolling_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="front_left_upper">
+    <inertial>
+      <origin
+        xyz="-8.38094207408768E-07 -0.00913273870075593 0.0363573750568079"
+        rpy="0 0 0" />
+      <mass
+        value="0.346414710951148" />
+      <inertia
+        ixx="0.000343982752220712"
+        ixy="-1.33212320532338E-09"
+        ixz="1.88764582691273E-09"
+        iyy="0.000143614074247798"
+        iyz="-1.29648267711765E-05"
+        izz="0.000446456732783713" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_left_upper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_left_upper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_pitching_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0560000000000001"
+      rpy="1.57079632679489 1.57079632679489 3.14159265358979" />
+    <parent
+      link="front_left_hip" />
+    <child
+      link="front_left_upper" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-1.57079632679489" upper="1.57079632679489" />
+  </joint>
+
+  <transmission name="front_left_pitching_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_pitching_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_pitching_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="front_left_lower">
+    <inertial>
+      <origin
+        xyz="-2.27912472644531E-08 -0.0495075321725428 0.0178591888181716"
+        rpy="0 0 0" />
+      <mass
+        value="0.0750215427338524" />
+      <inertia
+        ixx="3.68567919818787E-05"
+        ixy="-1.11153647194495E-11"
+        ixz="-7.51150303401972E-11"
+        iyy="1.1200690859173E-05"
+        iyz="-2.69514180410772E-08"
+        izz="3.94661656745884E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_left_lower.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_left_lower.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.118 0.0444275152762496"
+      rpy="0 0 0" />
+    <parent
+      link="front_left_upper" />
+    <child
+      link="front_left_lower" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-2.09439510239" upper="2.09439510239" />
+  </joint>
+
+  <transmission name="front_left_knee_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_knee_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_knee_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="front_right_hip">
+    <inertial>
+      <origin
+        xyz="-1.28933322351976E-15 -0.0245061982189771 0.0434825257550813"
+        rpy="0 0 0" />
+      <mass
+        value="0.287403399090452" />
+      <inertia
+        ixx="0.000294967221100898"
+        ixy="-7.14048774535375E-19"
+        ixz="7.22519104007918E-19"
+        iyy="0.000276989174514326"
+        iyz="6.85291573611586E-05"
+        izz="0.000227908693925579" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_right_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_right_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_rolling_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0749999999999997 -0.046 0"
+      rpy="-1.5707963267949 -1.5707963267949 3.14159265358979" />
+    <parent
+      link="body" />
+    <child
+      link="front_right_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-0.78539816339" upper="0.78539816339" />
+  </joint>
+
+  <transmission name="front_right_rolling_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_rolling_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_rolling_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="front_right_upper">
+    <inertial>
+      <origin
+        xyz="-8.36315253036068E-07 -0.00913273205692508 0.0363573698248908"
+        rpy="0 0 0" />
+      <mass
+        value="0.34641460810288" />
+      <inertia
+        ixx="0.000343982732998758"
+        ixy="-1.33711857115226E-09"
+        ixz="1.88903805897856E-09"
+        iyy="0.00014361405420718"
+        iyz="-1.29648253943747E-05"
+        izz="0.000446456694589089" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_right_upper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_right_upper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_pitching_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0559999999999999"
+      rpy="1.5707963267949 -1.5707963267949 3.14159265358979" />
+    <parent
+      link="front_right_hip" />
+    <child
+      link="front_right_upper" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-1.5707963267949" upper="1.5707963267949" />
+  </joint>
+
+  <transmission name="front_right_pitching_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_pitching_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_pitching_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="front_right_lower">
+    <inertial>
+      <origin
+        xyz="2.66312556243542E-08 -0.0495075486793061 -0.0239130204162159"
+        rpy="0 0 0" />
+      <mass
+        value="0.0750215633846731" />
+      <inertia
+        ixx="3.6856800714444E-05"
+        ixy="3.59925115927712E-11"
+        ixz="-7.85413578065176E-11"
+        iyy="1.12006894901358E-05"
+        iyz="-2.6939380592927E-08"
+        izz="3.9466167147905E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_right_lower.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/front_right_lower.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.118000000000001 0.0384002604954864"
+      rpy="3.14159265358979 0 3.14159265358979" />
+    <parent
+      link="front_right_upper" />
+    <child
+      link="front_right_lower" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-2.09439510239" upper="2.09439510239" />
+  </joint>
+
+  <transmission name="front_right_knee_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_knee_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_knee_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="back_left_hip">
+    <inertial>
+      <origin
+        xyz="2.3115190317391E-15 -0.0245061982189771 0.0434825257550813"
+        rpy="0 0 0" />
+      <mass
+        value="0.287403399090452" />
+      <inertia
+        ixx="0.000294967221100898"
+        ixy="7.45388993583784E-19"
+        ixz="-7.86046575051991E-19"
+        iyy="0.000276989174514326"
+        iyz="6.85291573611588E-05"
+        izz="0.000227908693925579" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_left_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_left_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_left_rolling_joint"
+    type="revolute">
+    <origin
+      xyz="0.0750000000000002 0.196 0"
+      rpy="1.5707963267949 -1.5707963267949 3.14159265358979" />
+    <parent
+      link="body" />
+    <child
+      link="back_left_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-0.78539816339" upper="0.78539816339" />
+  </joint>
+
+  <transmission name="back_left_rolling_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_left_rolling_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_left_rolling_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="back_left_upper">
+    <inertial>
+      <origin
+        xyz="-8.84650029481238E-07 -0.00913278578709542 0.0363574174650593"
+        rpy="0 0 0" />
+      <mass
+        value="0.346415555722095" />
+      <inertia
+        ixx="0.000343982839503177"
+        ixy="-1.41760980525594E-09"
+        ixz="1.85792919625264E-09"
+        iyy="0.000143614416463687"
+        iyz="-1.29648358323848E-05"
+        izz="0.000446457154511743" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_left_upper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_left_upper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_left_pitching_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0560000000000002"
+      rpy="-1.5707963267949 -1.5707963267949 0" />
+    <parent
+      link="back_left_hip" />
+    <child
+      link="back_left_upper" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-1.57079632679" upper="1.57079632679" />
+  </joint>
+
+  <transmission name="back_left_pitching_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_left_pitching_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_left_pitching_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="back_left_lower">
+    <inertial>
+      <origin
+        xyz="-3.69894304630414E-08 -0.0495075457189641 0.0284615236694766"
+        rpy="0 0 0" />
+      <mass
+        value="0.0750215597675351" />
+      <inertia
+        ixx="3.68567982064168E-05"
+        ixy="-2.21675666718664E-11"
+        ixz="-7.31357970502013E-11"
+        iyy="1.1200688038062E-05"
+        iyz="-2.69423619916557E-08"
+        izz="3.94661656204548E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_left_lower.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_left_lower.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_left_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.117999999999998 0.0338251867868911"
+      rpy="0 0 0" />
+    <parent
+      link="back_left_upper" />
+    <child
+      link="back_left_lower" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-2.09439510239" upper="2.09439510239" />
+  </joint>
+
+  <transmission name="back_left_knee_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_left_knee_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_left_knee_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="back_right_hip">
+    <inertial>
+      <origin
+        xyz="-2.53009418971217E-15 -0.0245061982189771 0.0434825257550814"
+        rpy="0 0 0" />
+      <mass
+        value="0.287403399090452" />
+      <inertia
+        ixx="0.000294967221100898"
+        ixy="-7.99599102208061E-19"
+        ixz="8.09339981101483E-19"
+        iyy="0.000276989174514326"
+        iyz="6.85291573611588E-05"
+        izz="0.000227908693925579" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_right_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_right_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_right_rolling_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0750000000000002 0.196 0"
+      rpy="1.57079632679489 1.57079632679489 -3.14159265358979" />
+    <parent
+      link="body" />
+    <child
+      link="back_right_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-0.78539816339" upper="0.78539816339" />
+  </joint>
+
+  <transmission name="back_right_rolling_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_right_rolling_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_right_rolling_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="back_right_upper">
+    <inertial>
+      <origin
+        xyz="-8.86716534670429E-07 -0.00913277020166277 0.0363574083653259"
+        rpy="0 0 0" />
+      <mass
+        value="0.346415370498043" />
+      <inertia
+        ixx="0.000343982776912706"
+        ixy="-1.43739604703343E-09"
+        ixz="1.85405101118218E-09"
+        iyy="0.00014361437418194"
+        iyz="-1.29648289405201E-05"
+        izz="0.000446457052276096" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_right_upper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_right_upper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_right_pitching_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0560000000000002"
+      rpy="-1.5707963267949 1.57079632679489 0" />
+    <parent
+      link="back_right_hip" />
+    <child
+      link="back_right_upper" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-1.57079632679" upper="1.57079632679" />
+  </joint>
+
+  <transmission name="back_right_pitching_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_right_pitching_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_right_pitching_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link
+    name="back_right_lower">
+    <inertial>
+      <origin
+        xyz="-2.41819808621813E-08 -0.0495075458804539 -0.0171458621661799"
+        rpy="0 0 0" />
+      <mass
+        value="0.0750215642346178" />
+      <inertia
+        ixx="3.68567955747476E-05"
+        ixy="-1.49907075566448E-11"
+        ixz="-7.55343435885849E-11"
+        iyy="1.12006908298538E-05"
+        iyz="-2.69622109034241E-08"
+        izz="3.94661683705168E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_right_lower.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/meshes/back_right_lower.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_right_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.117999999999999 0.0451674422325088"
+      rpy="3.14159265358979 0 3.14159265358979" />
+    <parent
+      link="back_right_upper" />
+    <child
+      link="back_right_lower" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="50" velocity="10" lower="-2.09439510239" upper="2.09439510239" />
+  </joint>
+
+  <transmission name="back_right_knee_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_right_knee_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_right_knee_motor">
+      <mechanicalReduction>5</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>
